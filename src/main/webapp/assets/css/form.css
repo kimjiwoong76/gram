@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+
+/*
+********************************* 
+    common 공통 모음 
+**********************************
+*/
+
+input[type=file]{font-family: 'Noto Sans KR', sans-serif;
+font-size: 16px;
+color: #000;
+font-weight: 400;
+outline: 0;
+line-height: 1;
+}
+.basic-em{
+    font-style:normal;
+    color:#0089d0;
+}
+
+
+.align-center{
+    text-align:center;
+}
+
+.form_head{
+    text-align:center;
+    margin-bottom:40px;
+}
+.form_head p{
+    font-size:32px;
+    color:#222222;
+    font-weight:700;
+}
+.form_head span{
+    font-size:30px;
+    color:#222;
+    font-weight:700;
+    display:block;
+}
+
+.form_box{
+	max-width:480px;
+    width:100%;
+	margin:auto;
+	padding:35px 0;
+}
+
+.form_inner {
+    margin-bottom: 20px;
+}
+.form_chk_btn{
+    display:none;
+}
+.form_chk_btn + label{
+    display:block;
+    padding-left:20px;
+    box-sizing:border-box;
+    position:relative;
+}
+.form_chk_btn+label:before{
+    content:"";
+    display:block;
+    width:12px;
+    height:12px;
+    border:1px solid #dddddd;
+    box-sizing:border-box;
+    position:absolute;
+    top:50%;
+    left:0;
+    transform: translateY(-50%);
+    transition:all 300ms;
+}
+.form_chk_btn:checked+label:before{
+    border-radius:50%;
+    background:#222;
+    border-color:#222;
+}
+.disc_check{
+    display:none;
+}
+.disc_check + label{
+    display:block;
+    position:relative;
+    padding-left:40px;
+    box-sizing:border-box;
+    font-size:16px;
+    color:#111111;
+    text-align:left;
+}
+.disc_check+label:before{
+    content:"";
+    display:block;
+    width:20px;
+    height:20px;
+    border:1px solid #cdcdcd;
+    border-radius:50%;
+    box-sizing:border-box;
+    position:absolute;
+    top:5px;
+    left:0;
+    transition:background 300ms;
+}
+.disc_check:checked+label:before{
+    background:#0089d0;
+}
+
+
+.form_btn_only{
+    display:block;
+    width:100%;
+    color:#fff;
+    font-size:15px;
+    font-weight:500;
+    background:#0089d0;
+    padding:15px 0;
+    box-shadow:0;
+    border:1px solid #0089d0;
+}
+.form_btn_inline{
+    display:inline-block;
+    color:#fff;
+    font-size:15px;
+    font-weight:500;
+    background:#0089d0;
+    padding:15px 70px;
+    box-shadow:0;
+    border:1px solid #0089d0;
+}
+
+
+
+@media (max-width:991px){
+    .form_inner{
+        margin-bottom:20px;
+    }
+}
+
+/*
+********************************* 
+    login 
+**********************************
+*/
+.login_form{
+    
+}
+.login_input_area{
+    width:100%;
+}
+.input_area{
+    margin-bottom:10px;
+}
+.input_area input{
+    width:100%;
+    padding:10px 8px;
+    border-top:0;
+    border-left:0;
+    border-right:0;
+    border-bottom:1px solid #dddddd;
+    box-sizing:border-box;
+    color:#666666;
+    font-size:14px;
+    font-weight:300;
+    transition:border-bottom-color 300ms;
+}
+.input_area input:focus{
+    outline:0;
+    border-bottom-color:#0089d0;
+}
+.input_area input::placeholder{
+    color:#666666;
+    font-size:14px;
+    font-weight:300;
+}
+.check_area{
+    width:100%;
+    margin-bottom:-30px;
+}
+.check_area .find_info{
+	text-align:center;
+}
+.check_area .find_info a{
+    display:inline-block;
+    font-size:13px;
+    color:#222222;
+}
+.check_area .find_info a:after{
+    content:"";
+    display:inline-block;
+    width:1px;
+    height:13px;
+    background:#0089d0;
+    margin:0 25px;
+    vertical-align:middle;
+}
+.check_area .find_info a:last-child:after{
+    display:none;
+}
+.login_check{
+    float:right;
+}
+.login_check label{
+    font-size:13px;
+    color:#222222;
+}
+
+.login_form_btn {
+    margin-bottom:10px;
+}
+.login_form_btn .login_form_submit{
+    width:100%;
+    background:#0089d0;
+    color:#fff;
+    font-size:16px;
+    font-weight:700;
+    border:0;
+    box-shadow:1px 1px 1px #0089d0;
+    padding:15px 20px;
+    box-sizing:border-box;
+}
+
+.check_id{
+    float:left;
+}
+.check_id input{
+    display:none;
+}
+.check_id svg{
+    vertical-align:middle;
+    transition:all 0.3s;
+}
+.check_id span{
+    display:inline-block;
+    vertical-align:middle;
+    margin-left:5px;
+    font-size: 13px;
+    color: #222222;
+    margin-top:4px;
+    transition:all 0.3s;
+}
+.check_id input:checked + label svg{
+    color:#0089d0;
+}
+.check_id input:checked + label span{
+    color:#0089d0;
+}
+
+.login_member{
+    border:1px solid #0089d0;
+    position:relative;
+}
+.login_member .member_page{
+    display:block;
+    padding:15px 25px;
+    box-sizing:border-box;
+    color:#333;
+    font-size:16px;
+    transition:all 0.3s;
+    text-align:center;
+}
