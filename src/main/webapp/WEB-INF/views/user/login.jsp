@@ -23,7 +23,7 @@
 			</div>
 			<div class="login_inner">
 				<div class="form_inner">
-					<form action="<c:url value="/user/login" />" method="post">
+					<form action="<c:url value="/user/loginProcess" />" method="POST">
 						<div class="login_form clearfix">
 							<div class="login_input_area">
 								<div class="id_area input_area">
@@ -40,6 +40,8 @@
 						<div class="login_member clearfix">
 							<a href="#!" class="member_page">회원가입</a>
 						</div>
+						<!-- csrf 공격을 막기위해서 hidden태그로 보내준다. -->
+						<input type='hidden' name='${_csrf.parameterName }' value='${_csrf.token }'>
 					</form>
 				</div>
 				<div class="form_inner">

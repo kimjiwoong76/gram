@@ -1,8 +1,11 @@
-package com.gram.domain;
+package com.gram.user;
+
+import org.springframework.stereotype.Component;
 
 import lombok.Data;
 
 @Data
+@Component
 public class UserVO {
 
 //	`userIdx`       VARCHAR(45)    NOT NULL    COMMENT '유저고유번호', 
@@ -29,5 +32,7 @@ public class UserVO {
 	private String userDate;
 	private String userUpdate;
 	private String Auth;
+	
+	
 	
 }

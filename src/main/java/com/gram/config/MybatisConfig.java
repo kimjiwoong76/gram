@@ -7,11 +7,11 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 @Configuration
-@MapperScan
 public class MybatisConfig {
 
 	@Bean
@@ -19,7 +19,7 @@ public class MybatisConfig {
         SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
         
         sqlSessionFactory.setDataSource(dataSource);
-        sqlSessionFactory.setTypeAliasesPackage("com.gram.domain");
+//        sqlSessionFactory.setTypeAliasesPackage("com.gram.domain");
         //쿼리가 정의된 xml 파일들의 위치 지정
         sqlSessionFactory.setMapperLocations(
                 new PathMatchingResourcePatternResolver().getResources("classpath:db/mysql/*-mapper.xml")

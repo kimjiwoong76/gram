@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gram.user.UserMapper">
+
+    <select id="loginUser" resultType="com.gram.user.UserVO">
+        SELECT 
+			u.userPassword, u.userId, a.AuthUser as Auth
+		    from user as u 
+		    inner join UserAuth as ua on u.userIdx = ua.userIdx 
+		    inner join Auth as a on ua.AuthLevel = a.AuthLevel 
+		    where u.userId = #{userId}
+    </select>
+    
+</mapper>

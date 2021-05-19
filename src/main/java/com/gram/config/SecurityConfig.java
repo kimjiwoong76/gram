@@ -1,42 +1,73 @@
 package com.gram.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.gram.user.UserService;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
-	@Override
-	public void configure(WebSecurity web) throws Exception {
-		// static 디렉터리의 하위 파일 목록은 인증 무시 ( = 항상통과 )
-		web.ignoring().antMatchers("/assets");
-	}
+	@Autowired
+	UserService userService;
 	
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
-		http.formLogin()		
-        .loginPage("/user/login")
-        .loginProcessingUrl("/user/test")
-        .failureUrl("/user/login?error")
-        .defaultSuccessUrl("/mypage", true)
-        .usernameParameter("userId")
-        .passwordParameter("userPassword");
+			http
+				.formLogin()
+				.loginPage("/user/login")
+				.usernameParameter("userId")
+				.passwordParameter("userPassword")
+				.loginProcessingUrl("/user/loginProcess")
+				.defaultSuccessUrl("/")
+				.failureUrl("/").permitAll();
 		
-		// 여기에선 리소스외에 페이지의 인증/비인증/인증권한등을 설정하는게 좋은것 같습니다.
-		http.authorizeRequests()
-//		.antMatchers("/mypage").authenticated()
-		.antMatchers("/**").permitAll()
-		.antMatchers("/").permitAll();
+			http
+				.authorizeRequests()
+		        .antMatchers("/").permitAll()
+				.antMatchers("/adm").hasAnyRole("ADMIN", "USER")
+				.antMatchers("/user").hasRole("USER")
+				.anyRequest().authenticated()
+				.and().csrf().disable();
+		
+			
 		
 		
-		
+			
 	}
+	
+	
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
+	}
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+	
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		// static 디렉터리의 하위 파일 목록은 인증 무시 ( = 항상통과 )
+		web.ignoring().antMatchers("/assets/**");
+	}
+	
+
+
 	
 	
 }
