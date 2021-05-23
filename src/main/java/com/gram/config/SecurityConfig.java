@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.gram.user.UserLoginFailHandler;
 import com.gram.user.UserService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +23,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Autowired
 	UserService userService;
+	@Autowired
+	UserLoginFailHandler userLoginFailHandler;
 	
 
 	@Override
@@ -33,15 +36,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				.usernameParameter("userId")
 				.passwordParameter("userPassword")
 				.loginProcessingUrl("/user/loginProcess")
-				.defaultSuccessUrl("/")
-				.failureUrl("/").permitAll();
+				.defaultSuccessUrl("/", true)
+				.failureHandler(userLoginFailHandler);
 		
 			http
 				.authorizeRequests()
-		        .antMatchers("/").permitAll()
-				.antMatchers("/adm").hasAnyRole("ADMIN", "USER")
-				.antMatchers("/user").hasRole("USER")
-				.anyRequest().authenticated()
+				.antMatchers("/adm/**").hasAnyRole("ADMIN", "USER")
+				.antMatchers("/member/**").hasRole("USER")
+				.antMatchers("/**").permitAll()
+				.anyRequest().denyAll()
 				.and().csrf().disable();
 		
 			

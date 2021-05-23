@@ -27,7 +27,6 @@ public class UserService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-		log.info("userId = " + userId);
 		if(userId == null && userId.equals("")) {
 			userId = "admin";
 		}
@@ -43,5 +42,12 @@ public class UserService implements UserDetailsService {
 		
 		return new UserSecurityVO(userVO);
 	}
+	
+	
+	public int memberSave(UserVO userVO) {
+		userVO.setUserPassword(passwordEncoder.encode(userVO.getUserPassword()));
+		return userMapper.memberSave(userVO);
+	}
+	
 	
 }

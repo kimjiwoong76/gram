@@ -10,8 +10,8 @@ public interface UserMapper {
 	//유저 정보
 	public ArrayList<UserVO> loginUser(String userId);
 	
-	//유저 저장
-	int userSave(UserVO userVO);
+	//유저 저장(회원가입)
+	public int memberSave(UserVO userVO);
 
 	//유저 권한 저장
 //	int userRoleSave(@Param("userNo") int userNo,@Param("roleNo") int roleNo);

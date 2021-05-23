@@ -14,4 +14,24 @@
 		    where u.userId = #{userId}
     </select>
     
+    <insert id="memberSave">
+    	INSERT INTO USER (
+		    userId, 
+		    userPassword, 
+		    userNick,
+		    userEmail, 
+		    userBirth, 
+		    userSex, 
+		    userDate
+		    ) values (
+		    	#{userId},
+		    	#{userPassword},
+		    	#{userNick},
+		    	#{userEmail},
+		    	#{userBirth},
+		    	#{userSex},
+		    	now()
+		    )
+    </insert>
+    
 </mapper>

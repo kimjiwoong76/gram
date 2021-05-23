@@ -9,8 +9,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,32 +30,9 @@ public class UserController {
 	}
 
 	// 로그인 페이지 이동
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/login")
 	public String loginForm(HttpServletRequest request) {
-		String referer_url = request.getHeader("referer");
-		AuthenticationTrustResolver trustResolver = new AuthenticationTrustResolverImpl();
-		if (trustResolver.isAnonymous(SecurityContextHolder.getContext().getAuthentication())) {
-			// 익명사용자
-			System.out.println("!@##################" + referer_url);
-			return "/user/login";
-		}
-		else { 
-			System.out.println("#################" + referer_url);
-			// 로그인 사용자
-			return "/app/index"; 
-		}
-		
-	}
-
-	
-	// 로그인 프로세스
-	@RequestMapping(value="/loginProcess", method = RequestMethod.POST)
-	public String loginProcess2(UserVO userVO) {
-		log.info("여기 타나요");
-		System.out.println("userVO" + userVO.getUserId());
-		String userName = userVO.getUserId();
-		userService.loadUserByUsername(userName);
-		return "redirect:/app";
+		return null;
 	}
 	
 	// 로그아웃 프로세스
@@ -63,6 +43,18 @@ public class UserController {
 			new SecurityContextLogoutHandler().logout(request, response, authentication);
 		}
 		return "redirect:/user/login";
+	}
+	
+	// 회원가입 페이지 이동
+	@GetMapping("/signUp")
+	public String signUp() {
+		return "/user/signUp";
+	}
+	
+	// 회원가입 폼
+	@PostMapping("/signForm")
+	public String signForm() {
+		return "/user/signForm";
 	}
 	
 	

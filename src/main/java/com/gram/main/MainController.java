@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class MainController {
 	
-	@RequestMapping(value="/user/mypage", method = RequestMethod.GET)
+	@RequestMapping(value="/member/mypage", method = RequestMethod.GET)
 	public String mypage() {
-		return "/user/mypage";
+		return "/member/mypage";
 	}
 	
 	@RequestMapping("/")
