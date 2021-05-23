@@ -34,27 +34,27 @@ public class UserLoginFailHandler implements AuthenticationFailureHandler {
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
 		if (exception instanceof AuthenticationServiceException) {
-			log.info("log1");
+			log.info("log1 = AuthenticationServiceException");
 			request.setAttribute("loginFailMsg", messageSource.getMessage("error.not.id", null, Locale.getDefault()));
 		
 		} else if(exception instanceof BadCredentialsException) {
-			log.info("log2");
+			log.info("log2 = BadCredentialsException");
 			request.setAttribute("loginFailMsg", messageSource.getMessage("error.bad.wrong", null, Locale.getDefault()));
 			
 		} else if(exception instanceof LockedException) {
-			log.info("log3");
+			log.info("log3 = LockedException");
 			request.setAttribute("loginFailMsg", messageSource.getMessage("error.lock", null, Locale.getDefault()));
 			
 		} else if(exception instanceof DisabledException) {
-			log.info("log4");
+			log.info("log4 = DisabledException");
 			request.setAttribute("loginFailMsg", messageSource.getMessage("error.disable", null, Locale.getDefault()));
 			
 		} else if(exception instanceof AccountExpiredException) {
-			log.info("log5");
+			log.info("log5 = AccountExpiredException");
 			request.setAttribute("loginFailMsg", messageSource.getMessage("error.not.account", null, Locale.getDefault()));
 			
 		} else if(exception instanceof CredentialsExpiredException) {
-			log.info("log6");
+			log.info("log6 = CredentialsExpiredException");
 			request.setAttribute("loginFailMsg", messageSource.getMessage("error.not.pw", null, Locale.getDefault()));
 		}
 		

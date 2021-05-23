@@ -13,10 +13,10 @@
 				<div class="login_form clearfix">
 					<div class="login_input_area">
 						<div class="id_area input_area">
-							<input type="text" name="shop_id" placeholder='<spring:message code="form.id" />'>
+							<input type="text" name="userId" placeholder='<spring:message code="form.id" />'>
 						</div>
 						<div class="pw_area input_area">
-							<input type="password" name="shop_pwd" placeholder='<spring:message code="form.pw" />'>
+							<input type="password" name="userPassword" placeholder='<spring:message code="form.pw" />'>
 						</div>
 						<div class="check_area clearfix">
 							<div class="find_info">

@@ -11,7 +11,7 @@ import com.gram.user.UserVO;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@RequestMapping("/adm")
+@RequestMapping("/admin")
 public class AdminController {
 	@RequestMapping(value = "/index")
 	public String admIndex(UserVO userVO)  {

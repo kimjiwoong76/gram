@@ -27,12 +27,8 @@ public class UserService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-		if(userId == null && userId.equals("")) {
-			userId = "admin";
-		}
 		//DB로부터 회원 정보를 가져온다.
 		ArrayList<UserVO> userVO = userMapper.loginUser(userId);
-		System.out.println(userVO.toString());
 		if(userVO.size() == 0) {
 			throw new UsernameNotFoundException("user" + userId + "not found!");
 		}
