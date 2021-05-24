@@ -23,7 +23,7 @@ public class UserSecurityVO implements UserDetails {
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 		
 		for(int i=0; i<userVO.size(); i++) {
-			authorities.add(new SimpleGrantedAuthority(userVO.get(i).getAuth()));
+			authorities.add(new SimpleGrantedAuthority(ROLE_PREFIX+userVO.get(i).getAuth()));
 		}
 		return authorities;
 	}

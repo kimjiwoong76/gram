@@ -9,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -21,7 +22,7 @@ public class MainController {
 	}
 	
 	@RequestMapping("/")
-	public String main(Principal principal) {
+	public String main(Principal principal, Model model) {
 		// 시큐리티 컨텍스트 객체를 얻습니다. 
 		SecurityContext context = SecurityContextHolder.getContext(); 
 		// 인증 객체를 얻습니다. 
