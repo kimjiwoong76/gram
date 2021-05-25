@@ -64,6 +64,13 @@ public class UserController {
 		return "/user/signForm";
 	}
 	
+	// 회원가입 action
+	@PostMapping("/signFormAction")
+	public String signFormAction(UserVO userVO) {
+		userService.memberSave(userVO);
+		return "result";
+	}
+	
 	
 	
 	

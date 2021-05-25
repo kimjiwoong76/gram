@@ -2,6 +2,8 @@ package com.gram.user;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -9,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -40,9 +43,15 @@ public class UserService implements UserDetailsService {
 	}
 	
 	
-	public int memberSave(UserVO userVO) {
-		userVO.setUserPassword(passwordEncoder.encode(userVO.getUserPassword()));
-		return userMapper.memberSave(userVO);
+	public int memberSave(UserVO userVO, Model model) {
+		int userInfo = userMapper.getUser(userVO.getUserId());
+		if(userInfo > 1) {
+			model.addAttribute("msg", "이미 사용중인 아이디 입니다.");
+			return 0;
+		} else {
+			userVO.setUserPassword(passwordEncoder.encode(userVO.getUserPassword()));
+			return userMapper.memberSave(userVO);
+		}
 	}
 	
 	

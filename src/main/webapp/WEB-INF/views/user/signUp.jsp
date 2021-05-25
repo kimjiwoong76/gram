@@ -23,6 +23,7 @@
                 </ul>
             </div>
             <form name="signUp" action="/user/signForm" method="post">
+            <input type="hidden" name="command" value="true" />
             <div class="form_inner">
                 <div class="register_section">
                     <div class="register_section_head">

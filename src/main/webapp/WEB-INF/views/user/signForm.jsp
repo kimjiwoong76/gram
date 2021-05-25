@@ -20,17 +20,37 @@
 		</div>
 		<div class="form_inner">
 			<form id="memberForm" class="form-horizontal" role="form"
-				method="post" action="/userJoinProc.do" name="shopMember">
+				method="post" action="/user/signFormAction" name="userSign">
 				<input type="hidden" name="command" value="regform">
 				<div class="register_form">
 					<div class="register_form_area clearfix">
 						<div class="register_form_name">
 							<p>
-								이름<sup>*</sup>
+								아이디<sup>*</sup>
 							</p>
 						</div>
 						<div class="register_form_input">
-							<input type="text" name="shop_name" class="normal_text">
+							<input type="text" name="userId" class="normal_text" placeholder="공백없이 한글,영문,숫자만 입력 가능(한글2자, 영문4자 이상)">
+						</div>
+					</div>
+					<div class="register_form_area clearfix">
+						<div class="register_form_name">
+							<p>
+								비밀번호<sup>*</sup>
+							</p>
+						</div>
+						<div class="register_form_input">
+							<input type="password" name="userPassword" class="normal_text">
+						</div>
+					</div>
+					<div class="register_form_area clearfix">
+						<div class="register_form_name">
+							<p>
+								비밀번호확인<sup>*</sup>
+							</p>
+						</div>
+						<div class="register_form_input">
+							<input type="password" name="userPassword2" class="normal_text">
 						</div>
 					</div>
 					<div class="register_form_area clearfix">
@@ -40,8 +60,8 @@
 							</p>
 						</div>
 						<div class="register_form_input">
-							<input type="text" name="shop_nickname" class="normal_text"
-								placeholder="공백없이 한글,영문,숫자만 입력 가능(한글2자, 영문4자 이상)">
+							<input type="text" name="userNick" class="normal_text"
+								placeholder="">
 						</div>
 					</div>
 					<div class="register_form_area clearfix">
@@ -51,18 +71,18 @@
 							</p>
 						</div>
 						<div class="register_form_input">
-							<input type="email" name="shop_email" class="normal_text"
+							<input type="email" name="userEmail" class="normal_text"
 								placeholder="공백없이 한글,영문,숫자만 입력 가능(한글2자, 영문4자 이상)">
 						</div>
 					</div>
 					<div class="register_form_area clearfix">
 						<div class="register_form_name">
 							<p>
-								아이디<sup>*</sup>
+								생년월일<sup>*</sup>
 							</p>
 						</div>
 						<div class="register_form_input">
-							<input type="text" name="shop_id" class="normal_text"
+							<input type="text" name="userBirth" class="normal_text"
 								placeholder="영문자, 숫자, _ 만 입력 가능. 최소 3자이상 입력하세요.">
 							<div class="idCheck col-lg-10"></div>
 						</div>
@@ -94,64 +114,29 @@
 					<div class="register_form_area clearfix">
 						<div class="register_form_name">
 							<p>
-								비밀번호<sup>*</sup>
-							</p>
-						</div>
-						<div class="register_form_input">
-							<input type="password" name="shop_pwd" class="normal_text">
-						</div>
-					</div>
-					<div class="register_form_area clearfix">
-						<div class="register_form_name">
-							<p>
-								비밀번호확인<sup>*</sup>
-							</p>
-						</div>
-						<div class="register_form_input">
-							<input type="password" name="shop_pwd2" class="normal_text">
-						</div>
-					</div>
-					<div class="register_form_area clearfix">
-						<div class="register_form_name">
-							<p>
-								연락처<sup>*</sup>
-							</p>
-						</div>
-						<div class="register_form_input">
-							<input type="number" name="shop_number" />
-						</div>
-					</div>
-					<div class="register_form_area clearfix">
-						<div class="register_form_name">
-							<p>
 								성별<sup>*</sup>
 							</p>
 						</div>
 						<div class="register_form_input">
-							<select name="shop_gender" class="form-control" id="gender">
+							<select name="userSex" class="form-control" id="gender">
 								<option value="F">여</option>
 								<option value="M">남</option>
 							</select>
 						</div>
 					</div>
+					<div class="register_form_area clearfix">
+						<div class="register_form_name">
+							<p>
+								아이콘<sup>*</sup>
+							</p>
+						</div>
+						<div class="register_form_input">
+							<input type="file" name="userEmail" class="normal_text"
+								placeholder="">
+						</div>
+					</div>
 				</div>
 				<div class="register_page">
-					<!-- <div class="register_check_box">
-                            <ul>
-                                <li>
-                                    <input type="checkbox" class="form_chk_btn" id="register_check_li1">
-                                    <label for="register_check_li1">정보 메일을 받겠습니다.</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" class="form_chk_btn" id="register_check_li2">
-                                    <label for="register_check_li2">SMS 수신여부</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" class="form_chk_btn" id="register_check_li3">
-                                    <label for="register_check_li3">다른 분들이 나의 정보를 볼 수 있도록 합니다.(정보공개를 바꾸시면 앞으로 30일 이내에는 변경이 안됩니다.)</label>
-                                </li>
-                            </ul>
-                        </div> -->
 					<a href="#!" class="register_page_btn">취소</a>
 					<button type="submit" onclick="return form_confirm();"
 						class="register_page_submit">다음단계</button>
