@@ -10,6 +10,9 @@
 <body>
 	<a href="/member/mypage">유저페이지</a>
 	<a href="/admin/index">관리자페이지</a>
-	 <span sec:authentication="authorities"></span>
+	 <sec:authorize access="hasRole('ROLE_ADMIN')">
+	 	관리자
+	 </sec:authorize>
+	 <a href="/user/logout">로그아웃</a>
 </body>
 </html>

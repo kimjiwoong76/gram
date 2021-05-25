@@ -1,5 +1,7 @@
 package com.gram.user;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -35,14 +37,19 @@ public class UserController {
 		return null;
 	}
 	
+	@RequestMapping(value = "/accessDenied")
+	public void userAccessDenied(HttpServletResponse response) throws Exception{
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println("<script>alert('접근 권한이 없습니다.'); history.go(-1)</script>");
+		out.flush();
+	}
+	
 	// 로그아웃 프로세스
 	@RequestMapping(value = "/logout")
 	public String logout(HttpServletRequest request, HttpServletResponse response) {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if(authentication != null) {
-			new SecurityContextLogoutHandler().logout(request, response, authentication);
-		}
-		return "redirect:/user/login";
+		log.info("로그아웃 실행");
+		return null;
 	}
 	
 	// 회원가입 페이지 이동

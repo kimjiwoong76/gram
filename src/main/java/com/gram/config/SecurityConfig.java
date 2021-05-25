@@ -45,6 +45,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				.antMatchers("/member/**").hasRole("MASTER")
 				.anyRequest().permitAll()
 				.and().csrf().disable();
+			
+			http.logout().logoutUrl("/user/logout").invalidateHttpSession(true).logoutSuccessUrl("/user/login");
+			http.exceptionHandling().accessDeniedPage("/user/accessDenied");
 		
 			
 		
