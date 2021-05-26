@@ -43,14 +43,15 @@ public class UserService implements UserDetailsService {
 	}
 	
 	
-	public int memberSave(UserVO userVO, Model model) {
-		int userInfo = userMapper.getUser(userVO.getUserId());
-		if(userInfo > 1) {
-			model.addAttribute("msg", "이미 사용중인 아이디 입니다.");
-			return 0;
-		} else {
+	public void memberSave(UserVO userVO) {
+//		int userInfo = userMapper.getUser(userVO.getUserId());
+		try {
+			userVO.setUserAuth(1);
 			userVO.setUserPassword(passwordEncoder.encode(userVO.getUserPassword()));
-			return userMapper.memberSave(userVO);
+			userMapper.memberSave(userVO); 
+			userMapper.authSave(userVO);
+		} catch(Exception e) {
+			e.printStackTrace();
 		}
 	}
 	

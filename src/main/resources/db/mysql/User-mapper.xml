@@ -34,4 +34,19 @@
 		    )
     </insert>
     
+    
+    <insert id="authSave">
+    	<selectKey resultType="int" keyProperty="userIdx" order="BEFORE">
+    		SELECT userIdx from user where userId = #{userId}
+    	</selectKey>
+    	INSERT INTO USERAUTH (
+    		AuthLevel,
+    		userIdx
+    	) values (
+    		#{userAuth},
+    		#{userIdx}
+    	)
+    </insert>
+    
+    
 </mapper>

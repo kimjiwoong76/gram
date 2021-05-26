@@ -31,6 +31,7 @@ public class UserVO {
 	private String userUse;
 	private String userDate;
 	private String userUpdate;
+	private int userAuth;
 	private String Auth;
 	
 	

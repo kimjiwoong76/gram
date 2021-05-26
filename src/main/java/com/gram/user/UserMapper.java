@@ -14,6 +14,9 @@ public interface UserMapper {
 	public int memberSave(UserVO userVO);
 
 	public int getUser(String userId);
+	
+	//유저 권한 등록
+	public void authSave(UserVO userVO);
 
 	//유저 권한 저장
 //	int userRoleSave(@Param("userNo") int userNo,@Param("roleNo") int roleNo);

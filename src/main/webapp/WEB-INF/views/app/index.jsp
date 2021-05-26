@@ -13,6 +13,8 @@
 	 <sec:authorize access="hasRole('ROLE_ADMIN')">
 	 	관리자
 	 </sec:authorize>
+	 <sec:authorize access="isAuthenticated()">
 	 <a href="/user/logout">로그아웃</a>
+	 </sec:authorize>
 </body>
 </html>

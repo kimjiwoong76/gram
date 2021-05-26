@@ -40,7 +40,7 @@
                         <label for="register_chk2">(필수) 개인정보처리방침안내</label>
                     </div>
                     <div class="register_section_area">
-                        <textarea name="" id="" cols="30" rows="10"></textarea>
+                        <textarea name="" id="" cols="30" rows="10">포트폴리오용 개인정보처리방침안내 입니다.</textarea>
                     </div>
                 </div>
                 <div class="register_section">
