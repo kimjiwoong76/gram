@@ -1,11 +1,17 @@
 package com.gram.user;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.springframework.stereotype.Component;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Component
+@ToString
 public class UserVO {
 
 //	`userIdx`       VARCHAR(45)    NOT NULL    COMMENT '유저고유번호', 
@@ -19,9 +25,15 @@ public class UserVO {
 //    `userUse`       CHAR(1)        NULL        COMMENT '유저사용여부' default 'Y', 
 //    `userDate`      DATETIME       NULL        COMMENT '가입일', 
 //    `userUpdate`    DATETIME       NULL        COMMENT '수정일', 
-//    `userAuth`      INT            NULL        COMMENT '유저 권한', 
+//    `userAuth`      INT            NULL        COMMENT '유저 권한',
+	
 	private String userIdx;
+	
+	@NotNull
+	@NotBlank
+	@Size(min = 4, max = 20,  message="4자리 이상 가능합니다.")
 	private String userId;
+	
 	private String userPassword;
 	private String userNick;
 	private String userEmail;
@@ -33,6 +45,7 @@ public class UserVO {
 	private String userUpdate;
 	private int userAuth;
 	private String Auth;
+	private String AuthUser;
 	
 	
 	

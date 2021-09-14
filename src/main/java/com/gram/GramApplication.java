@@ -13,8 +13,7 @@ import com.gram.config.MessageConfig;
 @SpringBootApplication
 @MapperScan
 public class GramApplication {
-	
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(GramApplication.class, args);
 	}

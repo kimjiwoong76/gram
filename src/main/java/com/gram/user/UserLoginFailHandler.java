@@ -17,10 +17,9 @@ import org.springframework.security.authentication.CredentialsExpiredException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.stereotype.Service;
-
-import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Default;
 
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
@@ -34,7 +33,7 @@ public class UserLoginFailHandler implements AuthenticationFailureHandler {
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
 		if (exception instanceof AuthenticationServiceException) {
-			log.info("log1 = AuthenticationServiceException");
+//			log.info("log1 = AuthenticationServiceException");
 			request.setAttribute("loginFailMsg", messageSource.getMessage("error.not.id", null, Locale.getDefault()));
 		
 		} else if(exception instanceof BadCredentialsException) {
@@ -56,6 +55,9 @@ public class UserLoginFailHandler implements AuthenticationFailureHandler {
 		} else if(exception instanceof CredentialsExpiredException) {
 			log.info("log6 = CredentialsExpiredException");
 			request.setAttribute("loginFailMsg", messageSource.getMessage("error.not.pw", null, Locale.getDefault()));
+		} else if(exception instanceof UsernameNotFoundException) {
+			log.info("log7 = UsernameNotFoundException");
+			request.setAttribute("loginFailMsg", messageSource.getMessage("error.not.auth", null, Locale.getDefault()));
 		}
 		
 		// 로그인 페이지로 다시 포워딩

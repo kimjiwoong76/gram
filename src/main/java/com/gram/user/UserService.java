@@ -1,17 +1,16 @@
 package com.gram.user;
 
 import java.util.ArrayList;
-
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -35,24 +34,22 @@ public class UserService implements UserDetailsService {
 		if(userVO.size() == 0) {
 			throw new UsernameNotFoundException("user" + userId + "not found!");
 		}
-		userVO.get(0).setUserPassword(passwordEncoder.encode(userVO.get(0).getUserPassword()));
-		
-		System.out.println(passwordEncoder.encode(userVO.get(0).getUserPassword()));
-		
 		return new UserSecurityVO(userVO);
 	}
 	
-	
 	public void memberSave(UserVO userVO) {
-//		int userInfo = userMapper.getUser(userVO.getUserId());
 		try {
 			userVO.setUserAuth(1);
 			userVO.setUserPassword(passwordEncoder.encode(userVO.getUserPassword()));
-			userMapper.memberSave(userVO); 
+			userMapper.memberSave(userVO);
 			userMapper.authSave(userVO);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public Boolean userSelect(UserVO userVO) {
+		return userMapper.userSelect(userVO);
 	}
 	
 	

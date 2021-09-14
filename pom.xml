@@ -74,6 +74,13 @@
 			<scope>provided</scope>
 		</dependency>
 		
+		<!-- validation -->
+		<dependency>
+		    <groupId>org.hibernate.validator</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+		    <version>6.0.7.Final</version>
+		</dependency>
+		
 		
 	</dependencies>
 

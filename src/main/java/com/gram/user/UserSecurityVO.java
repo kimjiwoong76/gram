@@ -21,7 +21,7 @@ public class UserSecurityVO implements UserDetails {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		
+		System.out.println("adsf");
 		for(int i=0; i<userVO.size(); i++) {
 			authorities.add(new SimpleGrantedAuthority(ROLE_PREFIX+userVO.get(i).getAuth()));
 		}

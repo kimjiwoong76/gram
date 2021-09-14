@@ -1,6 +1,8 @@
 package com.gram.user;
 
 import java.util.ArrayList;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
 
 
@@ -17,6 +19,8 @@ public interface UserMapper {
 	
 	//유저 권한 등록
 	public void authSave(UserVO userVO);
+
+	public Boolean userSelect(UserVO userVO);
 
 	//유저 권한 저장
 //	int userRoleSave(@Param("userNo") int userNo,@Param("roleNo") int roleNo);

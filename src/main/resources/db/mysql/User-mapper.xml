@@ -9,9 +9,10 @@
         SELECT 
 			u.userPassword, u.userId, a.AuthUser as Auth
 		    from user as u 
-		    inner join UserAuth as ua on u.userIdx = ua.userIdx 
-		    inner join Auth as a on ua.AuthLevel = a.AuthLevel 
-		    where u.userId = #{userId}
+		    inner join UserAuth as ua on u.userId = ua.userId
+		    inner join Auth as a on ua.AuthUser = a.AuthUser
+		    where u.userId = #{userId};
+            
     </select>
     
     <insert id="memberSave">
@@ -22,7 +23,8 @@
 		    userEmail, 
 		    userBirth, 
 		    userSex, 
-		    userDate
+		    userDate,
+		    userAuth
 		    ) values (
 		    	#{userId},
 		    	#{userPassword},
@@ -30,23 +32,28 @@
 		    	#{userEmail},
 		    	#{userBirth},
 		    	#{userSex},
-		    	now()
+		    	now(),
+		    	#{userAuth}
 		    )
     </insert>
     
     
     <insert id="authSave">
-    	<selectKey resultType="int" keyProperty="userIdx" order="BEFORE">
-    		SELECT userIdx from user where userId = #{userId}
+    	<selectKey resultType="String" keyProperty="AuthUser" order="BEFORE">
+    		SELECT AuthUser FROM AUTH where AuthLevel = #{userAuth}
     	</selectKey>
     	INSERT INTO USERAUTH (
-    		AuthLevel,
-    		userIdx
+    		AuthUser,
+    		userId
     	) values (
-    		#{userAuth},
-    		#{userIdx}
+    		#{AuthUser},
+    		#{userId}
     	)
     </insert>
+    
+    <select id="userSelect" resultType="boolean">
+    	SELECT if(count(*) = 1, 1, 0) from user where userId = #{userId}
+    </select>
     
     
 </mapper>
